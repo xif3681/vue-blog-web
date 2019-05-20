@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <el-container>
+    <el-main>
   <!--
     <div id="nav">
       <router-link to="/">首页</router-link> |
@@ -8,6 +10,14 @@
     </div>
   -->
     <router-view/>
+    </el-main>
+    <el-footer class="foot">2019 © 
+     <router-link to="/contact" class="more">联系方式</router-link>
+    
+    </el-footer>
+  </el-container>
+
+
   </div>
 </template>
 
@@ -27,6 +37,18 @@
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+}
+.foot {
+  border-top:1px solid #ccc;
+  text-align: right;
+}
+.more {
+  color:#42b983;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    color: orange;
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>{{title}}</h3>
+        <h4>{{title}}</h4>
         <ul>
             <li v-for="skill of datalist"><a  target="_blank" rel="noopener">{{skill.name}}</a></li>
         

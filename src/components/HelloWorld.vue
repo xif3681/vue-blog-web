@@ -1,10 +1,7 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      WEB开发工程师
 
-    </p>
+    <h3> WEB开发工程师</h3>
     <UiList title="IT 技能" :datalist="itSkill"/>
     <UiList title="工作经历" :datalist="works"/>
     <UiList title="个人评价" :datalist="evaluation"/>
@@ -20,9 +17,7 @@ export default {
   components: {
     UiList
   },
-  props: {
-    msg: String
-  },
+
   data() {
     return {
       itSkill : [

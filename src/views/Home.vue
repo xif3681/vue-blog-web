@@ -14,19 +14,25 @@
         <div>
           <p class="classify">分类：{{first.classify}}</p>
           <p>这里记录过去一周，我看到的值得分享的东西，每周五发布。</p>
-          <p><a class="more">阅读全文 »</a></p>
+          <p>
+           <a class="more" @click="gotoroute(first.id)">阅读全文 »</a>
+
+          </p>
           <p class="time">{{first.time}} | 留言</p>
         </div>
 
         <h3 class="title" style="margin-top: 40px;">最新文章</h3>
         <ul >
-          <li v-for="item of articles">{{item.time}}>><a class="seemore">{{item.title}}</a></li>
+          <li v-for="item of articles">{{item.time}}>><a class="seemore" @click="gotoroute(item.id)">{{item.title}}</a></li>
         </ul>
-        <p><a class="more">更多文章 »</a></p>
+        <p>
+              <router-link to="/article" class="more">更多文章 »</router-link>
+        
+        </p>
       </el-main>
     </el-container>
 
-    <el-footer class="foot">2019 © <span class="more">联系方式</span></el-footer>
+
   </el-container>
 
   </div>
@@ -48,16 +54,16 @@ export default {
         {info:'微博', link: 'https://github.com/xif3681'},
         {info:'CSDN', link: 'https://blog.csdn.net/xif3681'},
         {info:'github', link: 'https://github.com/xif3681'},
-        {info:'更多', link: 'https://github.com/xif3681'},
+        {info:'更多', route: '/about'},
       ],
       guestbook: [
 
       ],
       blogroll: [
 
-        {info:'Angular', link: 'https://github.com/xif3681'},
-        {info:'vue', link: 'https://github.com/xif3681'},
-        {info:'react', link: 'https://github.com/xif3681'},
+        {info:'Angular', link: 'https://www.angular.cn/docs'},
+        {info:'vue', link: 'https://cn.vuejs.org/'},
+        {info:'react', link: 'http://caibaojian.com/react/'},
       ],
       first:{id: 10056, time:'2019-05-20',title: '每周分享第 56 期',classify:'JS'},
       articles: [
@@ -67,12 +73,18 @@ export default {
         {id: 10052, time:'2019-05-20',title: '每周分享第 52 期',classify:'JS'},
       ]
     }
-  }
+  },
+  methods: {
+    gotoroute(id) {
+      this.$router.push({ name: 'details', params: { id: id }})
+    }
+  },
 }
 </script>
 
 <style scoped lang="scss">
 .head {
+    color: orange;
     border-bottom: 1px solid #ccc;
     margin-bottom: 19px;
     line-height: 60px;
