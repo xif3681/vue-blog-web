@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import PageNotFound from './views/PageNotFound.vue'
 
 Vue.use(Router)
 
@@ -43,6 +44,7 @@ export default new Router({
       path: '/details/:id',
       name: 'details',
       component: () => import(/* webpackChunkName: "details" */ './views/Details.vue')
-    }
+    },
+    { path: '**', name: 'pageNotFound', component: PageNotFound }
   ]
 })

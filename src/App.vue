@@ -11,10 +11,12 @@
   -->
     <router-view/>
     </el-main>
+
     <el-footer class="foot">2019 © 
      <router-link to="/contact" class="more">联系方式</router-link>
     
     </el-footer>
+
   </el-container>
 
 

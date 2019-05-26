@@ -2,7 +2,7 @@
     <div>
         <h4>{{title}}</h4>
         <ul>
-            <li v-for="skill of datalist"><a  target="_blank" rel="noopener">{{skill.name}}</a></li>
+            <li v-for="(skill,index) in datalist" :key="index"><a  target="_blank" rel="noopener">{{skill.name}}</a></li>
         
         </ul>
     

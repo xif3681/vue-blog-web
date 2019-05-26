@@ -6,7 +6,7 @@
             <img :src="imgsrc" />
         </div>
         <ul>
-            <li v-for="item of dataList">
+            <li v-for="(item, index) in dataList" :key="index">
                 <a :href="item.link" v-if="item.link"  target="_blank">  {{item.info}}</a>
                 <router-link :to="item.route"  v-if="item.route"> {{item.info}}</router-link>
             </li>
