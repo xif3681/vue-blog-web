@@ -25,7 +25,7 @@
         <h3 class="title" style="margin-top: 40px;">最新文章</h3>
         <ul >
           <li v-for="(item, index) in articles" :key="index">
-          <a class="seemore" @click="gotoroute(item.cont)">{{item.date |moment("YYYY-MM-DD HH:mm:ss")}} | {{item.title}}</a></li>
+          <a class="seemore" @click="gotoroute(item.cont)">{{$moment(item.date).format("YYYY-MM-DD HH:mm:ss")}} | {{item.title}}</a></li>
         </ul>
         <p>
               <router-link to="/article" class="more">更多文章 »</router-link>
@@ -88,17 +88,26 @@ export default {
       // this.$router.push({ name: 'details', params: { id: id }})
       window.open(`${this.url}${id}`, '_blank')
     },
-    getNewsList(){
-      this.axios.get(`${this.apiurl}/articles/article`)
-      .then((response) => {
-        this.articles=response.data.data;
+    async queryWeekOrgOrder () {
+      try {
+        const data = await this.$services.order.queryWeekOrgOrder({
+          disCode: this.distributeCode
+        })
+        this.weekProductData = data.data
+      } catch (error) {
+        console.log('queryWeekOrgOrder Error: ', error)
+      }
+    },
+
+    async getNewsList(){
+      try {
+        const data = await this.$services.home.allarticles()
+        this.articles = data.data
         this.first = this.articles.shift();
+      } catch (error) {
+        console.log('queryWeekOrgOrder Error: ', error)
+      }
 
-
-      })
-      .catch((response) => {
-        this.error = response;
-      })
     }
   },
   mounted() {

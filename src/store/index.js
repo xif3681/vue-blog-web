@@ -1,30 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import mutations from './mutations'
-import actions from './action'
-// import about from './modules/about'
-import postedit from './modules/postedit'
-
+import weeklyplan from './modules/weeklyplan'
 Vue.use(Vuex)
-
-// export default new Vuex.Store({
-//   state: {
-
-//   },
-//   mutations: {
-
-//   },
-//   actions: {
-
-//   }
-// })
-
 export default new Vuex.Store({
-  modules: {
-    // about,
-    postedit
+  state: {
+    count: 0
   },
-  // state,
-  actions,
-  mutations
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  },
+  actions: {
+
+  },
+  getters: {},
+  modules: {
+    weeklyplan
+  }
 })

@@ -1,9 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import PageNotFound from './views/PageNotFound.vue'
+// import Home from './views/Home.vue'
+// import PageNotFound from './views/PageNotFound.vue'
 
 Vue.use(Router)
+
+const lazyLoadView = (AsyncView) => {
+  const AsyncComponent = () => ({
+    component: AsyncView,
+    loading: require('./views/Loading.vue').default,
+    error: require('./views/Loading.vue').default,
+    delay: 200,
+    timeout: 30000
+  })
+
+  return Promise.resolve({
+    functional: true,
+    render (h, { data, children }) {
+      return h(AsyncComponent, data, children)
+    }
+  })
+}
 
 export default new Router({
   mode: 'history',
@@ -12,7 +29,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: () => import(/* webpackChunkName: "about" */ './views/Home.vue')
     },
     {
       path: '/about',
@@ -20,7 +37,7 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () => lazyLoadView(import(/* webpackChunkName: "about" */ './views/About.vue'))
     },
     {
       path: '/postedit',
@@ -28,23 +45,25 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (postedit.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "postedit" */ './views/Postedit.vue')
+      component: () => lazyLoadView(import(/* webpackChunkName: "postedit" */ './views/Postedit.vue'))
     },
     {
       path: '/article',
       name: 'article',
-      component: () => import(/* webpackChunkName: "article" */ './views/Article.vue')
+      component: () => lazyLoadView(import(/* webpackChunkName: "article" */ './views/Article.vue'))
     },
     {
       path: '/contact',
       name: 'contact',
-      component: () => import(/* webpackChunkName: "contact" */ './views/Contact.vue')
+      component: () => lazyLoadView(import(/* webpackChunkName: "contact" */ './views/Contact.vue'))
     },
     {
       path: '/details/:id',
       name: 'details',
-      component: () => import(/* webpackChunkName: "details" */ './views/Details.vue')
+      component: () => lazyLoadView(import(/* webpackChunkName: "details" */ './views/Details.vue'))
     },
-    { path: '**', name: 'pageNotFound', component: PageNotFound }
+    { path: '**', name: 'pageNotFound',
+      component: () => import(/* webpackChunkName: "postedit" */ './views/PageNotFound.vue')
+    }
   ]
 })

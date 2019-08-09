@@ -5,7 +5,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/articles': {
-                target: 'http://localhost:10005',
+                target: 'http://notapig.cn/blog-api',
                 changeOrigin: true,
                 ws: true,
                 pathRewrite: {
@@ -13,7 +13,7 @@ module.exports = {
                 }
             },
             "/blog-api": {
-                "target": "http://localhost:10005",
+                "target": "http://notapig.cn/blog-api",
                 changeOrigin: true,
                 ws: true,
                 pathRewrite: {
