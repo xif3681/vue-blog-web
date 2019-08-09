@@ -1,6 +1,7 @@
 <template>
   <div class="home">
   <el-container>
+    <!-- <Headcarousel /> -->
     <el-header class="head">{{title}}</el-header>
 
     <el-container>
@@ -55,7 +56,8 @@ export default {
   name: 'home',
   mixins: [homeMixin],
   components: {
-    AsideList: () => import('@/components/AsideList.vue')
+    AsideList: () => import('@/components/AsideList.vue'),
+    // Headcarousel: () => import('@/components/Headcarousel.vue')
   },
   data() {
     return {

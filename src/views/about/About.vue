@@ -6,7 +6,7 @@
       <router-link to="/">蒙奇·D·伊丽莎白  »  </router-link>
     </h1>
     <img alt="Vue logo" class="logo" src="@/assets/me.jpg">
-    <HelloWorld />
+    <AboutMe />
     </el-main>
 
   </el-container>
@@ -15,12 +15,11 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'about',
   components: {
-    HelloWorld
+    AboutMe: ()  => import('@/components/AboutMe.vue')
   }
 }
 </script>
