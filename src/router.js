@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from './views/Home.vue'
-// import PageNotFound from './views/PageNotFound.vue'
 
 Vue.use(Router)
 
@@ -29,7 +27,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import(/* webpackChunkName: "about" */ './views/Home.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/home/Home.vue')
     },
     {
       path: '/about',
@@ -37,30 +35,17 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => lazyLoadView(import(/* webpackChunkName: "about" */ './views/About.vue'))
-    },
-    {
-      path: '/postedit',
-      name: 'postedit',
-      // route level code-splitting
-      // this generates a separate chunk (postedit.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => lazyLoadView(import(/* webpackChunkName: "postedit" */ './views/Postedit.vue'))
+      component: () => lazyLoadView(import(/* webpackChunkName: "about" */ './views/about/About.vue'))
     },
     {
       path: '/article',
       name: 'article',
-      component: () => lazyLoadView(import(/* webpackChunkName: "article" */ './views/Article.vue'))
-    },
-    {
-      path: '/contact',
-      name: 'contact',
-      component: () => lazyLoadView(import(/* webpackChunkName: "contact" */ './views/Contact.vue'))
+      component: () => lazyLoadView(import(/* webpackChunkName: "article" */ './views/article/Article.vue'))
     },
     {
       path: '/details/:id',
       name: 'details',
-      component: () => lazyLoadView(import(/* webpackChunkName: "details" */ './views/Details.vue'))
+      component: () => lazyLoadView(import(/* webpackChunkName: "details" */ './views/details/Details.vue'))
     },
     { path: '**', name: 'pageNotFound',
       component: () => import(/* webpackChunkName: "postedit" */ './views/PageNotFound.vue')

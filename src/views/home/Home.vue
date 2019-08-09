@@ -48,12 +48,14 @@
 
 <script>
 // @ is an alias to /src
-import AsideList from '@/components/AsideList.vue'
+
+import { homeMixin } from '@/mixins'
 
 export default {
   name: 'home',
+  mixins: [homeMixin],
   components: {
-    AsideList
+    AsideList: () => import('@/components/AsideList.vue')
   },
   data() {
     return {
@@ -63,21 +65,7 @@ export default {
       // apiurl: '/blog-api',
       // apiurl: 'http://notapig.cn/blog-api',
       apiurl: '/articles',
-      aboutme: [
-        {info:'微博', link: 'https://github.com/xif3681'},
-        {info:'CSDN', link: 'https://blog.csdn.net/xif3681'},
-        {info:'github', link: 'https://github.com/xif3681'},
-        {info:'更多', route: '/about'},
-      ],
-      guestbook: [
 
-      ],
-      blogroll: [
-
-        {info:'Angular', link: 'https://www.angular.cn/docs'},
-        {info:'vue', link: 'https://cn.vuejs.org/'},
-        {info:'react', link: 'http://caibaojian.com/react/'},
-      ],
       first:{},
       articles: [
       ]
@@ -101,7 +89,7 @@ export default {
 
     async getNewsList(){
       try {
-        const data = await this.$services.home.allarticles()
+        const data = await this.$services.article.allarticles()
         this.articles = data.data
         this.first = this.articles.shift();
       } catch (error) {

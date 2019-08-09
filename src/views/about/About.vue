@@ -5,7 +5,7 @@
     <h1 class="title">
       <router-link to="/">蒙奇·D·伊丽莎白  »  </router-link>
     </h1>
-    <img alt="Vue logo" class="logo" src="../assets/me.jpg">
+    <img alt="Vue logo" class="logo" src="@/assets/me.jpg">
     <HelloWorld />
     </el-main>
 

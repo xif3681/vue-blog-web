@@ -13,7 +13,7 @@
     </el-main>
 
     <el-footer class="foot">2019 © 
-     <router-link to="/contact" class="more">联系方式</router-link>
+     <a class="more">Email: luo.shuqi@live.com</a>
     
     </el-footer>
 

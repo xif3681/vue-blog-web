@@ -1,4 +1,5 @@
 import * as home from './home'
+import * as article from './article'
 
 
 import requestAnimateFrame from './requestAnimateFrame'
@@ -8,6 +9,7 @@ export default {
   authHeader,
   requestAnimateFrame,
   home,
+  article
 
 
 }

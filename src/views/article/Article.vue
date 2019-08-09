@@ -7,7 +7,7 @@
     </h1>
     <ul >
       <li v-for="(item, index) in articles" :key="index">
-      <a class="seemore" @click="gotoroute(item.cont)">{{item.date |moment("YYYY-MM-DD HH:mm:ss")}} | {{item.title}}</a></li>
+      <a class="seemore" @click="gotoroute(item.cont)">{{$moment(item.date).format("YYYY-MM-DD HH:mm:ss")}} | {{item.title}}</a></li>
     </ul>
     <el-pagination
       background
@@ -69,15 +69,16 @@ export default {
       // this.$router.push({ name: 'details', params: { id: id }})
       window.open(`${this.url}${id}`, '_blank')
     },
-    getNewsList(){
-      this.axios.get(`${this.apiurl}/articles/article?page=${this.page}&pageSize=${this.pageSize}`)
-      .then((response) => {
-        this.articles=response.data.data;
-        this.total = response.data.total;
-      })
-      .catch((response) => {
-        this.error = response;
-      })
+
+    async getNewsList(){
+      try {
+        const response = await this.$services.article.allarticlesPage({page: this.page, pageSize: this.pageSize})
+        this.articles=response.data;
+        this.total = response.total;
+      } catch (error) {
+        console.log('queryWeekOrgOrder Error: ', error)
+      }
+
     },
     currentChange (val) {
       this.page = val;

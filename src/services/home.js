@@ -26,6 +26,3 @@ export const roomList = () => Request.get(`/roomList/`)
   console.log(error);
 });
 
-export const allarticles = () => {
-  return Request.get(`/articles/article`)
-}
