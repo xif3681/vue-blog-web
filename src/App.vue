@@ -1,11 +1,25 @@
 <template>
   <div id="app">
+    <el-container>
+    <el-main>
+  <!--
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> | 
-      <router-link to="/postedit">Postedit</router-link>
+      <router-link to="/">首页</router-link> |
+      <router-link to="/about">关于</router-link> | 
+      <router-link to="/postedit">博客</router-link>
     </div>
+  -->
     <router-view/>
+    </el-main>
+
+    <el-footer class="foot">2019 © 
+     <a class="more">Email: luo.shuqi@live.com</a>
+    
+    </el-footer>
+
+  </el-container>
+
+
   </div>
 </template>
 
@@ -27,4 +41,18 @@
     }
   }
 }
+.foot {
+  border-top:1px solid #ccc;
+  text-align: right;
+}
+.more {
+  color:#42b983;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    color: orange;
+  }
+}
+
+
 </style>
